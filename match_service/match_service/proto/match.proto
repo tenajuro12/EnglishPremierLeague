@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+option go_package = "match_service/proto;proto";
+
+package match;
+
+import "google/protobuf/timestamp.proto";
+
+message Match {
+  int32 id = 1;
+  string home_team = 2;
+  string away_team = 3;
+  string date = 4;
+  string status = 5;
+  int32 home_score = 6;
+  int32 away_score = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+service MatchService {
+  rpc CreateMatch (CreateMatchRequest) returns (CreateMatchResponse);
+  rpc GetMatch (GetMatchRequest) returns (GetMatchResponse);
+  rpc UpdateMatch (UpdateMatchRequest) returns (UpdateMatchResponse);
+  rpc DeleteMatch (DeleteMatchRequest) returns (DeleteMatchResponse);
+  rpc ListMatches (ListMatchesRequest) returns (ListMatchesResponse);
+}
+
+message CreateMatchRequest {
+  string home_team = 1;
+  string away_team = 2;
+  string date = 3;
+  string status = 4;
+  int32 home_score = 5;
+  int32 away_score = 6;
+}
+
+message CreateMatchResponse {
+  int32 id = 1;
+  string home_team = 2;
+  string away_team = 3;
+  string date = 4;
+  string status = 5;
+  int32 home_score = 6;
+  int32 away_score = 7;
+  google.protobuf.Timestamp created_at = 8;
+}
+
+message GetMatchRequest {
+  int32 id = 1;
+}
+
+message GetMatchResponse {
+  int32 id = 1;
+  string home_team = 2;
+  string away_team = 3;
+  string date = 4;
+  string status = 5;
+  int32 home_score = 6;
+  int32 away_score = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+message UpdateMatchRequest {
+  int32 id = 1;
+  string home_team = 2;
+  string away_team = 3;
+  string date = 4;
+  string status = 5;
+  int32 home_score = 6;
+  int32 away_score = 7;
+}
+
+message UpdateMatchResponse {
+  int32 id = 1;
+  string home_team = 2;
+  string away_team = 3;
+  string date = 4;
+  string status = 5;
+  int32 home_score = 6;
+  int32 away_score = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+message DeleteMatchRequest {
+  int32 id = 1;
+}
+
+message DeleteMatchResponse {
+}
+
+message ListMatchesRequest {
+
+}
+
+message ListMatchesResponse {
+  repeated Match matches = 1;
+}
